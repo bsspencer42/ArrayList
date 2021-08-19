@@ -41,6 +41,23 @@ public class ArrayList<T> {
      */
     public void addToFront(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        // Resize if necessary
+        if (backingArray.length %  INITIAL_CAPACITY != 0){
+            System.out.println("Need to resize");
+        }
+        else {
+            T curVal;
+            T nextVal;
+            backingArray[0] = data;
+            for (int i = 0; i < backingArray.length; i++){
+                curVal = backingArray[i];
+
+            }
+
+        }
+
+        // Add data
+
     }
 
     /**
@@ -69,6 +86,7 @@ public class ArrayList<T> {
      */
     public T removeFromFront() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return null;
     }
 
     /**
@@ -83,6 +101,7 @@ public class ArrayList<T> {
      */
     public T removeFromBack() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        return null;
     }
 
     /**
@@ -109,5 +128,10 @@ public class ArrayList<T> {
     public int size() {
         // DO NOT MODIFY THIS METHOD!
         return size;
+    }
+
+    public static void main(String[] args) {
+        ArrayList<Integer> myData = new ArrayList<Integer>();
+        myData.addToFront(1);
     }
 }
