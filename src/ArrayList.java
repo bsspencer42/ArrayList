@@ -81,6 +81,25 @@ public class ArrayList<T> {
      */
     public void addToBack(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        // Resize array condition
+        if (size == backingArray.length){
+            T[] resizeArray = (T[]) new Object[backingArray.length*2];  // Create new container for values
+            for (int i = 0; i < backingArray.length; i++){
+                resizeArray[i] = backingArray[i];
+            }
+            backingArray = resizeArray;
+        }
+
+        // Add to back
+        backingArray[size] = data;
+        size++;
+
+        //TODO - REMOVE - Debug print
+        for (T myVals : backingArray){
+            System.out.print(myVals + "  ");
+        }
+        System.out.println("");
     }
 
     /**
@@ -147,5 +166,8 @@ public class ArrayList<T> {
         myData.addToFront(3);
         myData.addToFront(7);
         myData.addToFront(4);
+        myData.addToBack(10);
+        myData.addToBack(11);
+        myData.addToBack(12);
     }
 }
