@@ -41,6 +41,11 @@ public class ArrayList<T> {
      */
     public void addToFront(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+        // Check for null data
+        if (data == null){
+            throw new IllegalArgumentException();
+        }
+
         // Resize and add if necessary
         if (size == backingArray.length){
             T[] resizeArray = (T[]) new Object[backingArray.length*2];  // Create new container for values
@@ -82,6 +87,11 @@ public class ArrayList<T> {
     public void addToBack(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
 
+        // Check for null data
+        if (data == null){
+            throw new IllegalArgumentException();
+        }
+
         // Resize array condition
         if (size == backingArray.length){
             T[] resizeArray = (T[]) new Object[backingArray.length*2];  // Create new container for values
@@ -116,7 +126,31 @@ public class ArrayList<T> {
      */
     public T removeFromFront() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null;
+
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+
+        // Shift values forward
+        T returnVal = backingArray[0]; // Return value
+        T curVal = backingArray[1];     // Initial pointer
+        for (int i = 0; i < size - 1; i++){
+            backingArray[i] = curVal;
+            curVal = backingArray[i+2];
+        }
+        // Clear last value
+        backingArray[size-1] = null;
+        // Decrement size
+        size--;
+
+        //TODO - REMOVE - Debug print
+        for (T myVals : backingArray){
+            System.out.print(myVals + "  ");
+        }
+        System.out.println("");
+
+        // Return removed value
+        return returnVal;
     }
 
     /**
@@ -162,6 +196,7 @@ public class ArrayList<T> {
 
     public static void main(String[] args) {
         ArrayList<Integer> myData = new ArrayList<Integer>();
+        //myData.removeFromFront();
         myData.addToFront(1);
         myData.addToFront(3);
         myData.addToFront(7);
@@ -169,5 +204,6 @@ public class ArrayList<T> {
         myData.addToBack(10);
         myData.addToBack(11);
         myData.addToBack(12);
+        myData.removeFromFront();
     }
 }
