@@ -165,7 +165,27 @@ public class ArrayList<T> {
      */
     public T removeFromBack() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null;
+
+        // Check if list if empty
+        if (size == 0){
+            throw new NoSuchElementException();
+        }
+
+        // Clear last value
+        T returnVal = backingArray[size-1];
+        backingArray[size-1] = null;
+
+        // Decrement size
+        size--;
+
+        //TODO - REMOVE - Debug print
+        for (T myVals : backingArray){
+            System.out.print(myVals + "  ");
+        }
+        System.out.println("");
+
+        // Return
+        return returnVal;
     }
 
     /**
@@ -205,5 +225,6 @@ public class ArrayList<T> {
         myData.addToBack(11);
         myData.addToBack(12);
         myData.removeFromFront();
+        myData.removeFromBack();
     }
 }
