@@ -10,7 +10,7 @@ public class ArrayList<T> {
      *
      * DO NOT MODIFY THIS VARIABLE!
      */
-    public static final int INITIAL_CAPACITY = 9;
+    public static final int INITIAL_CAPACITY = 3;
 
     /*
      * Do not add new instance variables or modify existing ones.
@@ -41,23 +41,34 @@ public class ArrayList<T> {
      */
     public void addToFront(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        // Resize if necessary
-        if (backingArray.length %  INITIAL_CAPACITY != 0){
-            System.out.println("Need to resize");
+        // Resize and add if necessary
+        if (size == backingArray.length){
+            T[] resizeArray = (T[]) new Object[backingArray.length*2];  // Create new container for values
+            resizeArray[0] = data;                                      // Add new value to front
+            for (int i = 0; i < backingArray.length; i++){              // Dump original values
+                resizeArray[i+1] = backingArray[i];
+            }
+            backingArray = resizeArray;                                 // Set backingArray to new array
         }
+
+        // No resize needed
         else {
             T curVal;
-            T nextVal;
-            backingArray[0] = data;
             for (int i = 0; i < backingArray.length; i++){
                 curVal = backingArray[i];
-
+                backingArray[i] = data;
+                data = curVal;
             }
-
         }
 
-        // Add data
+        // Increment size
+        size++;
 
+        //TODO - REMOVE - Debug print
+        for (T myVals : backingArray){
+            System.out.print(myVals + "  ");
+        }
+        System.out.println("");
     }
 
     /**
@@ -133,5 +144,8 @@ public class ArrayList<T> {
     public static void main(String[] args) {
         ArrayList<Integer> myData = new ArrayList<Integer>();
         myData.addToFront(1);
+        myData.addToFront(3);
+        myData.addToFront(7);
+        myData.addToFront(4);
     }
 }
